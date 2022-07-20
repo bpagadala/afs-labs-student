@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deployment
+  name: db-deployment
   namespace: bpagadala
   labels:
-    app: app
+    app: db
 spec:
   replicas: 1
   strategy:
@@ -12,17 +12,17 @@ spec:
   minReadySeconds: 20
   selector:
     matchLabels:
-      app: app
+      app: db
   template:
     metadata:
       labels:
-        app: app
+        app: db
     spec:
       containers:
       - envFrom:
         - secretRef:
             name: db-secret
-        name: app-deployment
-        image: harbor.dev.afsmtddso.com/bpagadala-harbor-project/app@sha256:86ebd1fe44f617c3f4dc801d911900e2825c3ba35e9f1c798d97f1d6d0285c45
+        name: db-deployment
+        image: harbor.dev.afsmtddso.com/bpagadala-harbor-project/db@sha256:281f389ebbadb1fa3a2098ea2dc7561c4e4fde36bb45dd1f2db7ab3c705f509a
         ports:
-        - containerPort: 5000
+        - containerPort: 5432
