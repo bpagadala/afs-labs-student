@@ -222,7 +222,8 @@ def show_cart():
     """Query session for cart contents and display results"""
     
     # send flag for feature toggle to cart page
-    return render_template("cart.html")
+    # return render_template("cart.html")
+    return render_template("cart.html", flag=os.environ["LOCATION_FEATURE_ENABLED"])
 
 
 @app.route('/cart', methods=['POST'])
